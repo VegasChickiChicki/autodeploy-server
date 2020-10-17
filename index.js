@@ -20,16 +20,25 @@ app.post('/', (request, response, next) => {
     child_process.exec('cd ..').on('exit', code => {
       console.log('code: ', code);
       console.log('cd ..');
+    }).on('uncaughtException', (err, origin) => {
+      console.log('error: ', err);
+      console.log('origin: ', origin);
     });
 
     child_process.exec('cd nuxt-chat').on('exit', code => {
       console.log('code: ', code);
       console.log('cd nuxt-chat');
+    }).on('uncaughtException', (err, origin) => {
+      console.log('error: ', err);
+      console.log('origin: ', origin);
     });
 
     child_process.exec('git pull && npm run build && pm2 reload nuxt-chat').on('exit', code => {
       console.log('code: ', code);
       console.log('git pull && npm run build && pm2 reload nuxt-chat');
+    }).on('uncaughtException', (err, origin) => {
+      console.log('error: ', err);
+      console.log('origin: ', origin);
     });
   }
 

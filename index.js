@@ -34,6 +34,4 @@ app.post('/', (request, response, next) => {
   }
 
   next();
-
-  //child_process.exec('pm2 delete nuxt-prod');
 });

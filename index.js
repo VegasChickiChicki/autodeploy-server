@@ -28,35 +28,14 @@ app.post('/', (request, response, next) => {
         console.log('ls');
         console.log('code: ', code);
       });
+
+      child_process.exec('git pull && npm run build && pm2 reload nuxt-chat',function(err, stdout){
+        console.log(stdout);
+      }).on('exit', code => {
+        console.log('git pull && npm run build && pm2 reload nuxt-chat');
+        console.log('code: ', code);
+      });
     });
-
-    /*
-
-    child_process.exec('cd ..').on('exit', code => {
-      console.log('code: ', code);
-      console.log('cd ..');
-    });
-
-    */
-
-
-    /*
-
-    child_process.exec('cd nuxt-chat', (a, b, c) => {
-      console.log(a, b, c);
-    }).on('exit', code => {
-      console.log('code: ', code);
-      console.log('cd nuxt-chat');
-    });
-
-    child_process.exec('git pull && npm run build && pm2 reload nuxt-chat', (a, b, c) => {
-      console.log(a, b, c);
-    }).on('exit', code => {
-      console.log('code: ', code);
-      console.log('git pull && npm run build && pm2 reload nuxt-chat');
-    });
-
-    */
   }
 
   next();

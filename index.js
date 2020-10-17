@@ -16,7 +16,7 @@ app.listen(2020, () => console.log('Example app listening on port 2020'));
 
 app.post('/', (request, response, next) => {
   console.clear();
-  //console.log(request.body);
+  console.log(request.body);
 
   if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
     chdir('../nuxt-chat', async () => {
@@ -24,67 +24,11 @@ app.post('/', (request, response, next) => {
 
       console.log('start pipeline!');
 
-      await child_process.exec('ps',(err, stdout) =>{
+      child_process.exec('ls && git pull && npm run build && kill -15 `lsof -t -i:3000` && npm run start',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
-        console.log('ps');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('git pull',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('git pull');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('ps',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('ps');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('npm run build',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('npm run build');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('ps',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('ps');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('kill -15 `lsof -t -i:3000`',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('kill -15 `lsof -t -i:3000`');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('ps',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('ps');
-        console.log('code: ', code);
-      });
-
-      await child_process.exec('npm run start',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('npm run start');
+        console.log('git pull && npm run build && kill -15 `lsof -t -i:3000` && npm run start');
         console.log('code: ', code);
       });
     });

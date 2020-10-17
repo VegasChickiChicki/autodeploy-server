@@ -17,12 +17,20 @@ app.post('/', (request, response, next) => {
   console.log(request.body);
 
   if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
-    child_process.exec('cd ..', (a, b, c) => {
-      console.log(a, b, c);
+    child_process.exec('cd ..').on('exit', code => {
+      console.log('code: ', code);
+      console.log('cd ..');
+    });
+
+    child_process.exec('ls',function(err, stdout){
+      console.log(stdout);
     }).on('exit', code => {
       console.log('code: ', code);
       console.log('cd ..');
     });
+
+
+    /*
 
     child_process.exec('cd nuxt-chat', (a, b, c) => {
       console.log(a, b, c);
@@ -37,6 +45,8 @@ app.post('/', (request, response, next) => {
       console.log('code: ', code);
       console.log('git pull && npm run build && pm2 reload nuxt-chat');
     });
+
+    */
   }
 
   next();

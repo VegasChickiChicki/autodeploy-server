@@ -21,6 +21,7 @@ app.get('/', (req, res) => res.send(data));
 
 app.post('/', (request, response, next) => {
   console.clear();
+  console.log(request);
   console.log(request.body);
 
   response.json({

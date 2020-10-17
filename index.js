@@ -19,9 +19,15 @@ const data = {
 
 app.get('/', (req, res) => res.send(data));
 
-app.post('/', request => {
+app.post('/', (request, response) => {
   console.clear();
   console.log(request.body);
+
+  response.json({
+    status: true
+  });
+
+  next();
 
   //child_process.exec('pm2 delete nuxt-prod');
 });

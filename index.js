@@ -12,21 +12,26 @@ app.use(BodyParser.json());
 
 app.listen(2020, () => console.log('Example app listening on port 2020'));
 
-const data = {
-  name: 'vegas',
-  value: 256,
-};
-
-app.get('/', (req, res) => res.send(data));
-
 app.post('/', (request, response, next) => {
   console.clear();
-  console.log(request);
   console.log(request.body);
 
-  response.json({
-    status: true
-  });
+  if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
+    child_process.exec('cd ..').on('exit', code => {
+      console.log('code: ', code);
+      console.log('cd ..');
+    });
+
+    child_process.exec('cd nuxt-chat').on('exit', code => {
+      console.log('code: ', code);
+      console.log('cd nuxt-chat');
+    });
+
+    child_process.exec('git pull && pm2 reload nuxt-chat').on('exit', code => {
+      console.log('code: ', code);
+      console.log('git pull && pm2 reload nuxt-chat');
+    });
+  }
 
   next();
 

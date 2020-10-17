@@ -30,7 +30,8 @@ app.post('/', (request, response, next) => {
       });
 
       child_process.exec('git pull && npm run build && npm run start',(err, stdout) =>{
-        console.log(stdout);
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
       }).on('exit', code => {
         console.log('git pull && npm run build && npm run start');
         console.log('code: ', code);

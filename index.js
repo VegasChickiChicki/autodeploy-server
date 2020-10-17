@@ -24,16 +24,6 @@ app.post('/', (request, response, next) => {
 
       console.log('start git pull && npm run build && npm run start');
 
-
-
-      child_process.exec('sudo ss -tulpn | grep \':3000\'',(err, stdout) =>{
-        console.log('error: ', err);
-        console.log('stdout: ', stdout);
-      }).on('exit', code => {
-        console.log('sudo ss -tulpn | grep \':3000\'');
-        console.log('code: ', code);
-      });
-
       child_process.exec('git pull && npm run build && npm run start',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);

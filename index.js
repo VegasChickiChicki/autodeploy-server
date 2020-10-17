@@ -21,6 +21,13 @@ app.post('/', (request, response, next) => {
   if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
     chdir('../', () => {
       console.log('process.cwd: ', process.cwd());
+
+      child_process.exec('ls',function(err, stdout){
+        console.log(stdout);
+      }).on('exit', code => {
+        console.log('ls');
+        console.log('code: ', code);
+      });
     });
 
     /*
@@ -31,13 +38,6 @@ app.post('/', (request, response, next) => {
     });
 
     */
-
-    child_process.exec('ls',function(err, stdout){
-      console.log(stdout);
-    }).on('exit', code => {
-      console.log('ls');
-      console.log('code: ', code);
-    });
 
 
     /*

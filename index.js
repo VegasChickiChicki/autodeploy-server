@@ -24,11 +24,27 @@ app.post('/', (request, response, next) => {
 
       console.log('start pipeline!');
 
+      await child_process.exec('ps',(err, stdout) =>{
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
+      }).on('exit', code => {
+        console.log('ps');
+        console.log('code: ', code);
+      });
+
       await child_process.exec('git pull',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
         console.log('git pull');
+        console.log('code: ', code);
+      });
+
+      await child_process.exec('ps',(err, stdout) =>{
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
+      }).on('exit', code => {
+        console.log('ps');
         console.log('code: ', code);
       });
 
@@ -40,11 +56,27 @@ app.post('/', (request, response, next) => {
         console.log('code: ', code);
       });
 
+      await child_process.exec('ps',(err, stdout) =>{
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
+      }).on('exit', code => {
+        console.log('ps');
+        console.log('code: ', code);
+      });
+
       await child_process.exec('kill -15 `lsof -t -i:3000`',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
         console.log('kill -15 `lsof -t -i:3000`');
+        console.log('code: ', code);
+      });
+
+      await child_process.exec('ps',(err, stdout) =>{
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
+      }).on('exit', code => {
+        console.log('ps');
         console.log('code: ', code);
       });
 

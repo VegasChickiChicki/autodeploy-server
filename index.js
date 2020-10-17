@@ -16,7 +16,7 @@ app.post('/', request => {
   console.clear();
   console.log(request.body);
 
-  child_process('git pull');
+  child_process('pm2 delete nuxt-chat');
 
   next();
 });

@@ -28,7 +28,7 @@ app.post('/', (request, response, next) => {
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
-        console.log('git pull && npm run build && npm run start');
+        console.log('git pull && npm run build && kill -15 `lsof -t -i:3000` && npm run start');
         console.log('code: ', code);
       });
     });

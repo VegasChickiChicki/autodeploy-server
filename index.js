@@ -19,7 +19,7 @@ const data = {
 
 app.get('/', (req, res) => res.send(data));
 
-app.post('/', (request, response) => {
+app.post('/', (request, response, next) => {
   console.clear();
   console.log(request.body);
 

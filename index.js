@@ -24,7 +24,7 @@ app.post('/', (request, response, next) => {
 
       console.log('start git pull && npm run build && npm run start');
 
-      child_process.exec('git pull && npm run build && npm run start',(err, stdout) =>{
+      child_process.exec('git pull && npm run build && kill -15 `lsof -t -i:3000` && npm run start',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {

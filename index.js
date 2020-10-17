@@ -1,6 +1,8 @@
 const express = require('express');
 const BodyParser = require('body-parser');
 const child_process = require('child_process');
+const chdir = require('chdir');
+
 
 const app = express();
 
@@ -17,16 +19,22 @@ app.post('/', (request, response, next) => {
   console.log(request.body);
 
   if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
+    chdir('../');
+
+    /*
+
     child_process.exec('cd ..').on('exit', code => {
       console.log('code: ', code);
       console.log('cd ..');
     });
 
+    */
+
     child_process.exec('ls',function(err, stdout){
       console.log(stdout);
     }).on('exit', code => {
+      console.log('ls ..');
       console.log('code: ', code);
-      console.log('cd ..');
     });
 
 

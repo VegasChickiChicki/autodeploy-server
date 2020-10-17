@@ -29,7 +29,7 @@ app.post('/', (request, response, next) => {
         console.log('code: ', code);
       });
 
-      child_process.exec('git pull && npm run build && pm2 reload nuxt-chat',function(err, stdout){
+      child_process.exec('git pull && npm run build && npm run start',(err, stdout) =>{
         console.log(stdout);
       }).on('exit', code => {
         console.log('git pull && npm run build && npm run start');

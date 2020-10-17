@@ -19,7 +19,7 @@ app.post('/', (request, response, next) => {
   console.log(request.body);
 
   if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/nuxt-chat'){
-    chdir('../', () => {
+    chdir('../nuxt-chat', () => {
       console.log('process.cwd: ', process.cwd());
 
       child_process.exec('ls',function(err, stdout){

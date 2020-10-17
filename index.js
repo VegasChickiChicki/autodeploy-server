@@ -24,7 +24,7 @@ app.post('/', (request, response, next) => {
 
       console.log('start pipeline!');
 
-      child_process.exec('ls && git pull && npm run build && kill -15 `lsof -t -i:3000` && npm run start',(err, stdout) =>{
+      child_process.exec('git pull && npm run build && pm2 restart nuxt-prod',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {

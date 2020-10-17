@@ -26,11 +26,11 @@ app.post('/', (request, response, next) => {
 
 
 
-      child_process.exec('sudo ss -tulpn | grep \':22\'',(err, stdout) =>{
+      child_process.exec('sudo ss -tulpn | grep \':3000\'',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
-        console.log('sudo ss -tulpn | grep \':22\'');
+        console.log('sudo ss -tulpn | grep \':3000\'');
         console.log('code: ', code);
       });
 

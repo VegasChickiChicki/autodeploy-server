@@ -24,6 +24,4 @@ app.post('/', request => {
   console.log(request.body);
 
   child_process.exec('pm2 delete nuxt-chat');
-
-  next();
 });

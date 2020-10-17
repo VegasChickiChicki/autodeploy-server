@@ -27,9 +27,9 @@ app.post('/', (request, response, next) => {
       console.log('cd nuxt-chat');
     });
 
-    child_process.exec('git pull && pm2 reload nuxt-chat').on('exit', code => {
+    child_process.exec('git pull && npm run build && pm2 reload nuxt-chat').on('exit', code => {
       console.log('code: ', code);
-      console.log('git pull && pm2 reload nuxt-chat');
+      console.log('git pull && npm run build && pm2 reload nuxt-chat');
     });
   }
 

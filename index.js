@@ -14,6 +14,8 @@ app.use(BodyParser.json());
 
 app.listen(2020, () => console.log('Example app listening on port 2020'));
 
+app.get('/', (req, res) => res.send('autodeploy-server is ready to work!'));
+
 app.post('/', (request, response, next) => {
   console.clear();
   console.log(request.body);

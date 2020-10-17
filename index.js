@@ -22,12 +22,7 @@ app.post('/', (request, response, next) => {
     chdir('../nuxt-chat', () => {
       console.log('process.cwd: ', process.cwd());
 
-      child_process.exec('ls',function(err, stdout){
-        console.log(stdout);
-      }).on('exit', code => {
-        console.log('ls');
-        console.log('code: ', code);
-      });
+      console.log('start git pull && npm run build && npm run start');
 
       child_process.exec('git pull && npm run build && npm run start',(err, stdout) =>{
         console.log('error: ', err);

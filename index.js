@@ -26,7 +26,23 @@ app.post('/', (request, response, next) => {
 
       console.log('start pipeline!');
 
-      child_process.exec('git pull && npm install && npm run build && pm2 restart nuxt-prod',(err, stdout) =>{
+      child_process.exec('git pull && npm install && npm run build && pm2 restart nuxt-chat',(err, stdout) =>{
+        console.log('error: ', err);
+        console.log('stdout: ', stdout);
+      }).on('exit', code => {
+        console.log('end pipeline!');
+        console.log('code: ', code);
+      });
+    });
+  }
+
+  if (request.headers['x-github-event'] === 'push' && request.body.repository.full_name === 'VegasChickiChicki/api-server'){
+    chdir('../express-server', async () => {
+      console.log('process.cwd: ', process.cwd());
+
+      console.log('start pipeline!');
+
+      child_process.exec('git pull && npm install && pm2 restart api-server',(err, stdout) =>{
         console.log('error: ', err);
         console.log('stdout: ', stdout);
       }).on('exit', code => {
